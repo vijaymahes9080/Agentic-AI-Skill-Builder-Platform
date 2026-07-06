@@ -1,20 +1,34 @@
-# Universal Cross-Platform Agentic AI Ecosystem (U-AIX)
+# 🌌 Universal Cross-Platform Agentic AI Ecosystem (U-AIX)
 
 ![U-AIX Cognitive Neural Hub](assets/uaix_cognitive_hub.png)
 
-U-AIX is a state-of-the-art, global AI Orchestration Platform and Agent Operating System that extends, combines, and routes queries dynamically across ChatGPT, Claude, Gemini, DeepSeek, and Edge LLMs. 
+U-AIX is a state-of-the-art, global **AI Orchestration Platform** and **Agent Operating System** that dynamically routes, combines, and optimizes prompts across Gemini, Claude, ChatGPT, DeepSeek, and Edge LLMs. 
 
-This repository contains the interactive U-AIX developer dashboard and visual system blueprint portal.
+This repository contains the interactive U-AIX developer dashboard, visual blueprint studio, and multi-model router playground.
 
 ---
 
-## 🚀 Key Features
+## ✨ Primary Visual Components
 
-* **Visual Agent Studio**: Drag-and-drop workflow canvas to chain models and skill packs with sequential pipeline highlights and running terminal simulation logs.
-* **Intelligent Model Router**: Weight quality, latency, and cost priorities to dynamically target ideal API routes with dial telemetry.
-* **Universal Memory Vector Sync**: TLS encrypted user-side synced context embeddings crossing ChatGPT, Claude, and local edge containers.
-* **Architect Specs Sandbox**: Entity-relationship database schemas, Swagger-compliant interactive endpoint inputs, and multi-language SDK playground scripts.
-* **Business Pitch Strategy**: Integrated pitch decks, 30/60/90 days MVP timelines, scaling topologies, and competitive matrix parameters.
+### 🎨 Visual Agent Studio
+Build complex multi-agent workflows using a node-based interface. Chain capabilities, set memory brokers, and watch real-time flow execution highlights with detailed simulation logs.
+
+![Visual Agent Studio Workspace](assets/agent_studio.png)
+
+### 🚦 Intelligent Model Router
+Optimize your cost, latency, and capability score constraints. Dynamically direct requests to the most efficient model node with live telemetry dashboards.
+
+![Intelligent Model Router Dashboard](assets/model_router.png)
+
+---
+
+## 🚀 Key Architectural Features
+
+* **🧠 Hybrid Memory Sync:** TLS-encrypted, local-first context syncing across ChatGPT, Claude, and edge models.
+* **⚡ Visual Orchestrator:** Drag-and-drop workflow canvas showing active state transitions and message routing.
+* **🛡️ Security Shield:** AES-GCM-256 client-side encryption of context embeddings before any cloud sync.
+* **🛠️ Spec Sandbox:** Swagger-compliant endpoints and interactive SDK playground supporting Node.js and Python.
+* **📊 Business Intelligence:** Embedded MVP timeline (30/60/90 days), competitive matrices, and multi-layer network topologies.
 
 ---
 
@@ -62,26 +76,30 @@ graph TD
 
 ## 📁 Repository Directory Structure
 
-* [index.html](index.html) — DOM layout definitions, sidebar tabs navigation, slider interfaces, and modals.
-* [index.css](index.css) — Custom HSL theme variables, scrollbars, canvas grids, glowing active nodes, dial SVG styles, and execution keyframes.
-* [app.js](app.js) — Workspace drag handlers, SVG connector paths, simulated multi-agent execution routines, API sandboxes, and slide managers.
-* [sdk-samples.js](sdk-samples.js) — Node.js and Python syntax highlights displaying skill registration and context syncing loops.
+* 📄 [index.html](index.html) — DOM structures, sidebar tab controls, interactive dials, and modal containers.
+* 🎨 [index.css](index.css) — Custom HSL theme variables, scrollbar stylings, node canvas grids, and glow animations.
+* ⚙️ [app.js](app.js) — Mouse drag events, canvas line drawings, mock pipeline runs, router metrics, and slide controllers.
+* 🐍 [sdk-samples.js](sdk-samples.js) — Code highlights showing Python & JavaScript SDK integration interfaces.
 
 ---
 
 ## 🔧 Developer Quickstart
 
-To boot the U-AIX console locally:
+To run the U-AIX console locally in your web browser:
 
-1. Clone or open the workspace directory.
-2. Initialize a static HTTP server:
+1. Clone this repository to your computer.
+2. Launch a local static HTTP server in the root directory:
    ```bash
    npx http-server -p 8080
    ```
-3. Open `http://localhost:8080` in your web browser.
+3. Open [http://localhost:8080](http://localhost:8080) in your web browser.
+
+> [!IMPORTANT]
+> Make sure you have Node.js installed to run `npx`. If you don't have Node.js, you can open `index.html` directly in your browser, though some async assets might require a local origin.
 
 ---
 
 ## 🔒 Security & Data Sovereignty
 
-All vector cache coordinates are encrypted client-side using **AES-GCM-256** prior to remote sync. The central cloud orchestrator handles routing payloads without ever storing decrypted database values.
+> [!NOTE]
+> All vector cache data coordinates are encrypted client-side using **AES-GCM-256** prior to remote sync. The central cloud orchestrator routes payloads without ever having visibility of your raw decrypted keys or context credentials.
