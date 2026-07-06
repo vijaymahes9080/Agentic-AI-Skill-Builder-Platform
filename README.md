@@ -1,6 +1,6 @@
 # Universal Cross-Platform Agentic AI Ecosystem (U-AIX)
 
-![U-AIX Cognitive Neural Hub](C:\Users\vijay\.gemini\antigravity-ide\brain\c7651c6a-880c-43ea-8c15-76cdf246dee2\uaix_cognitive_hub.png)
+![U-AIX Cognitive Neural Hub](assets/uaix_cognitive_hub.png)
 
 U-AIX is a state-of-the-art, global AI Orchestration Platform and Agent Operating System that extends, combines, and routes queries dynamically across ChatGPT, Claude, Gemini, DeepSeek, and Edge LLMs. 
 
@@ -62,10 +62,10 @@ graph TD
 
 ## 📁 Repository Directory Structure
 
-* [index.html](file:///d:/current_project/Agentic_AI_Skill_Builder_Platform/index.html) — DOM layout definitions, sidebar tabs navigation, slider interfaces, and modals.
-* [index.css](file:///d:/current_project/Agentic_AI_Skill_Builder_Platform/index.css) — Custom HSL theme variables, scrollbars, canvas grids, glowing active nodes, dial SVG styles, and execution keyframes.
-* [app.js](file:///d:/current_project/Agentic_AI_Skill_Builder_Platform/app.js) — Workspace drag handlers, SVG connector paths, simulated multi-agent execution routines, API sandboxes, and slide managers.
-* [sdk-samples.js](file:///d:/current_project/Agentic_AI_Skill_Builder_Platform/sdk-samples.js) — Node.js and Python syntax highlights displaying skill registration and context syncing loops.
+* [index.html](index.html) — DOM layout definitions, sidebar tabs navigation, slider interfaces, and modals.
+* [index.css](index.css) — Custom HSL theme variables, scrollbars, canvas grids, glowing active nodes, dial SVG styles, and execution keyframes.
+* [app.js](app.js) — Workspace drag handlers, SVG connector paths, simulated multi-agent execution routines, API sandboxes, and slide managers.
+* [sdk-samples.js](sdk-samples.js) — Node.js and Python syntax highlights displaying skill registration and context syncing loops.
 
 ---
 
