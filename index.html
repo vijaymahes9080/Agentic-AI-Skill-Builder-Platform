@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>U-AIX — Universal Cross-Platform Agentic AI Ecosystem</title>
+  <meta name="description" content="A unified Operating System, orchestrator, and skill engine combining ChatGPT, Claude, Gemini, DeepSeek, and local LLMs.">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <div id="app-container">
+    
+    <!-- SIDEBAR NAVIGATION -->
+    <aside>
+      <div class="logo-container">
+        <div class="logo-icon">U</div>
+        <div class="logo-text">U-AIX</div>
+        <span class="logo-badge">v1.0.0</span>
+      </div>
+
+      <nav>
+        <a class="nav-item active" data-tab="tab-dashboard">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+          Dashboard Overview
+        </a>
+        <a class="nav-item" data-tab="tab-studio">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          Agent Studio
+        </a>
+        <a class="nav-item" data-tab="tab-marketplace">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
+          Skill Marketplace
+        </a>
+        <a class="nav-item" data-tab="tab-router">
+          <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Intelligence Router
+        </a>
+        <a class="nav-item" data-tab="tab-memory">
+          <svg viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+          Universal Memory
+        </a>
+        <a class="nav-item" data-tab="tab-architect">
+          <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6A1 1 0 0 0 17.7 8l-1.6-1.6a1 1 0 0 0-1.4 0zM12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9zm0 16.5A7.5 7.5 0 1 1 19.5 12 7.5 7.5 0 0 1 12 19.5z"/></svg>
+          Architect Portal
+        </a>
+        <a class="nav-item" data-tab="tab-business">
+          <svg viewBox="0 0 24 24"><path d="M21.21 15.89A10 10 0 1 1 8 2.83M22 12A10 10 0 0 0 12 2v10z"/></svg>
+          Pitch & Business Deck
+        </a>
+        <a class="nav-item" data-tab="tab-security">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Security & Zero-Trust
+        </a>
+      </nav>
+
+      <div class="system-status">
+        <div class="status-row">
+          <span>U-AIX Daemon</span>
+          <div class="status-indicator">
+            <div class="status-dot"></div>
+            <span>ONLINE</span>
+          </div>
+        </div>
+        <div class="status-row">
+          <span>Active Connections</span>
+          <strong id="active-connections-count">14 API Routers</strong>
+        </div>
+        <div class="status-row">
+          <span>Security Integrity</span>
+          <span style="color: var(--accent-secondary); font-weight: 600;">100% SECURE</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN INTERFACE VIEWPORT -->
+    <main>
+      
+      <!-- HEADER -->
+      <header>
+        <div class="header-search">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--text-muted)" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Search agents, skills, workflows...">
+        </div>
+        
+        <div class="header-actions">
+          <div class="metric-pill">
+            <span>Orchestration Savings:</span>
+            <strong id="header-savings">$12,481.50</strong>
+          </div>
+          <div class="metric-pill">
+            <span>Average Latency:</span>
+            <strong id="header-latency">180ms</strong>
+          </div>
+          <button class="btn-primary" id="btn-global-compile">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Run Active Pipeline
+          </button>
+        </div>
+      </header>
+
+      <!-- 1. DASHBOARD OVERVIEW -->
+      <div id="tab-dashboard" class="content-view active">
+        <div class="view-title-block">
+          <h1>Dashboard Overview</h1>
+          <p>Real-time telemetry and orchestration statistics for U-AIX system operations.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 24px;">
+          <div class="studio-panel-card">
+            <h3 style="color: var(--accent-primary);"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 17V9l6 4-6 4z"/></svg> Active Workflows</h3>
+            <span id="dash-active-workflows" style="font-size: 2rem; font-weight: 800; margin-bottom: 4px;">42</span>
+            <span style="font-size: 0.75rem; color: var(--accent-success);">+12% vs last hour</span>
+          </div>
+          <div class="studio-panel-card">
+            <h3 style="color: var(--accent-secondary);"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> API Latency</h3>
+            <span id="dash-latency" style="font-size: 2rem; font-weight: 800; margin-bottom: 4px;">180 ms</span>
+            <span style="font-size: 0.75rem; color: var(--accent-success);">-25ms optimization loop</span>
+          </div>
+          <div class="studio-panel-card">
+            <h3 style="color: var(--accent-success);"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Success Rate</h3>
+            <span id="dash-success-rate" style="font-size: 2rem; font-weight: 800; margin-bottom: 4px;">99.84%</span>
+            <span id="dash-total-executions" style="font-size: 0.75rem; color: var(--text-secondary);">4,281 executions today</span>
+          </div>
+          <div class="studio-panel-card">
+            <h3 style="color: var(--accent-warning);"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Saved Cost</h3>
+            <span id="dash-saved-cost" style="font-size: 2rem; font-weight: 800; margin-bottom: 4px;">$12,481.50</span>
+            <span style="font-size: 0.75rem; color: var(--accent-success);">41.2% router optimization</span>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+          <!-- Telemetry Graphs -->
+          <div class="studio-panel-card">
+            <h3>Orchestration Performance Over Time</h3>
+            <div id="telemetry-bar-chart" style="height: 250px; display: flex; align-items: flex-end; justify-content: space-between; padding-top: 20px; border-bottom: 1px solid var(--border-color); border-left: 1px solid var(--border-color); position: relative; margin-top: 10px;">
+              <span style="position: absolute; left: 8px; top: 10px; font-size: 0.7rem; color: var(--text-muted);">API Hits (k)</span>
+              <!-- CSS Bars -->
+              <div style="width: 8%; background: linear-gradient(to top, rgba(157,78,221,0.2), var(--accent-primary)); height: 35%; border-radius: 4px 4px 0 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; color: #fff; font-size: 0.7rem; padding-bottom: 4px;">12k</div>
+              <div style="width: 8%; background: linear-gradient(to top, rgba(157,78,221,0.2), var(--accent-primary)); height: 45%; border-radius: 4px 4px 0 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; color: #fff; font-size: 0.7rem; padding-bottom: 4px;">18k</div>
+              <div style="width: 8%; background: linear-gradient(to top, rgba(157,78,221,0.2), var(--accent-primary)); height: 60%; border-radius: 4px 4px 0 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; color: #fff; font-size: 0.7rem; padding-bottom: 4px;">25k</div>
+              <div style="width: 8%; background: linear-gradient(to top, rgba(157,78,221,0.2), var(--accent-primary)); height: 50%; border-radius: 4px 4px 0 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; color: #fff; font-size: 0.7rem; padding-bottom: 4px;">20k</div>
+              <div style="width: 8%; background: linear-gradient(to top, rgba(157,78,221,0.2), var(--accent-primary)); height: 75%; border-radius: 4px 4px 0 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; color: #fff; font-size: 0.7rem; padding-bottom: 4px;">32k</div>
+              <div style="width: 8%; background: linear-gradient(to top, rgba(157,78,221,0.2), var(--accent-primary)); height: 90%; border-radius: 4px 4px 0 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; color: #fff; font-size: 0.7rem; padding-bottom: 4px;">42k</div>
+              <div style="width: 8%; background: linear-gradient(to top, rgba(157,78,221,0.2), var(--accent-primary)); height: 85%; border-radius: 4px 4px 0 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; color: #fff; font-size: 0.7rem; padding-bottom: 4px;">38k</div>
+              <div style="width: 8%; background: linear-gradient(to top, rgba(157,78,221,0.2), var(--accent-primary)); height: 98%; border-radius: 4px 4px 0 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; color: #fff; font-size: 0.7rem; padding-bottom: 4px;">48k</div>
+            </div>
+            <div style="display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.75rem; margin-top: 8px;">
+              <span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span>
+            </div>
+          </div>
+          
+          <!-- Recent activity -->
+          <div class="studio-panel-card">
+            <h3>Recent Executions</h3>
+            <div id="dashboard-recent-executions" style="display: flex; flex-direction: column; gap: 12px; margin-top: 10px;">
+              <!-- Handled dynamically by app.js -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. AGENT STUDIO -->
+      <div id="tab-studio" class="content-view">
+        <div class="view-title-block" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+          <div>
+            <h1>Agent Studio</h1>
+            <p>Design, route, and chain multi-model agents visually.</p>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn-outline" id="btn-add-node-model">+ Add Model Node</button>
+            <button class="btn-outline" id="btn-add-node-skill">+ Add Skill Node</button>
+          </div>
+        </div>
+
+        <div class="studio-grid">
+          <!-- Canvas area -->
+          <div class="canvas-container">
+            <div class="canvas-toolbar">
+              <div class="toolbar-group">
+                <span style="font-weight: bold; font-size: 0.85rem;">Active Pipeline Canvas</span>
+                <span class="feature-tag" style="background: rgba(0, 180, 216, 0.15); border-color: rgba(0, 180, 216, 0.3); color: var(--accent-secondary);">Workflow A</span>
+              </div>
+              <div class="toolbar-group">
+                <button class="btn-outline" style="padding: 6px 12px; font-size: 0.8rem;" id="btn-clear-canvas">Clear Canvas</button>
+                <button class="btn-primary" style="padding: 6px 12px; font-size: 0.8rem;" id="btn-run-studio-workflow">
+                  Run Workflow
+                </button>
+              </div>
+            </div>
+
+            <div class="canvas-workspace" id="studio-canvas">
+              <svg class="canvas-connections" id="connections-svg">
+                <!-- SVG lines will be generated dynamically by app.js -->
+              </svg>
+              
+              <!-- Static nodes that will also be managed dynamically -->
+              <div class="studio-node active-executing" id="node-1" style="left: 40px; top: 120px;">
+                <div class="node-header">
+                  <div class="node-header-icon icon-chatgpt">GPT</div>
+                  <div class="node-title">ChatGPT (Router input)</div>
+                  <div class="node-type">Model</div>
+                </div>
+                <div class="node-content">
+                  <div class="node-param-row"><span class="node-param-label">Max Tokens:</span><span class="node-param-value">2048</span></div>
+                  <div class="node-param-row"><span class="node-param-label">Temp:</span><span class="node-param-value">0.7</span></div>
+                </div>
+                <div class="node-port port-output" data-port-id="node-1-out"></div>
+              </div>
+
+              <div class="studio-node" id="node-2" style="left: 330px; top: 50px;">
+                <div class="node-header">
+                  <div class="node-header-icon icon-skill">RS</div>
+                  <div class="node-title">Research Pack</div>
+                  <div class="node-type">Skill</div>
+                </div>
+                <div class="node-content">
+                  <div class="node-param-row"><span class="node-param-label">Sources:</span><span class="node-param-value">Web, PDF</span></div>
+                  <div class="node-param-row"><span class="node-param-label">Depth:</span><span class="node-param-value">Aggressive</span></div>
+                </div>
+                <div class="node-port port-input" data-port-id="node-2-in"></div>
+                <div class="node-port port-output" data-port-id="node-2-out"></div>
+              </div>
+
+              <div class="studio-node" id="node-3" style="left: 330px; top: 220px;">
+                <div class="node-header">
+                  <div class="node-header-icon icon-claude">C3</div>
+                  <div class="node-title">Claude (Analysis)</div>
+                  <div class="node-type">Model</div>
+                </div>
+                <div class="node-content">
+                  <div class="node-param-row"><span class="node-param-label">Version:</span><span class="node-param-value">3.5 Sonnet</span></div>
+                  <div class="node-param-row"><span class="node-param-label">Routing:</span><span class="node-param-value">Accuracy</span></div>
+                </div>
+                <div class="node-port port-input" data-port-id="node-3-in"></div>
+                <div class="node-port port-output" data-port-id="node-3-out"></div>
+              </div>
+
+              <div class="studio-node" id="node-4" style="left: 620px; top: 130px;">
+                <div class="node-header">
+                  <div class="node-header-icon icon-gemini">G1</div>
+                  <div class="node-title">Gemini (Visuals)</div>
+                  <div class="node-type">Model</div>
+                </div>
+                <div class="node-content">
+                  <div class="node-param-row"><span class="node-param-label">Prompt:</span><span class="node-param-value">Render Chart</span></div>
+                  <div class="node-param-row"><span class="node-param-label">Format:</span><span class="node-param-value">SVG Vector</span></div>
+                </div>
+                <div class="node-port port-input" data-port-id="node-4-in"></div>
+                <div class="node-port port-output" data-port-id="node-4-out"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Output Panel Sidebar -->
+          <div class="studio-sidebar">
+            <div class="studio-panel-card">
+              <h3>Orchestration Terminal</h3>
+              <div class="console-terminal" id="studio-terminal">
+                <span class="console-line info">U-AIX daemon initialized. Standing by.</span>
+                <span class="console-line command">> waiting for trigger...</span>
+                <div class="console-line"><span class="console-cursor"></span></div>
+              </div>
+            </div>
+
+            <div class="studio-panel-card output-panel">
+              <h3>Output Preview</h3>
+              <div class="output-container" id="studio-output">
+                <span style="color: var(--text-muted); font-style: italic;">Outputs will be displayed here when the workflow completes execution.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. SKILL MARKETPLACE -->
+      <div id="tab-marketplace" class="content-view">
+        <div class="view-title-block">
+          <h1>Universal Skill Marketplace</h1>
+          <p>Browse, customize, and deploy pre-engineered skills to any model or agent stack.</p>
+        </div>
+
+        <div class="marketplace-filters">
+          <div class="category-tabs">
+            <button class="category-tab active" data-category="all">All Packs</button>
+            <button class="category-tab" data-category="research">Research</button>
+            <button class="category-tab" data-category="creative">Creative</button>
+            <button class="category-tab" data-category="code">Coding</button>
+            <button class="category-tab" data-category="automation">Automation</button>
+            <button class="category-tab" data-category="business">Business</button>
+          </div>
+          <div style="font-size: 0.85rem; color: var(--text-secondary);">
+            Showing <strong id="marketplace-count">6</strong> premium packs
+          </div>
+        </div>
+
+        <div class="marketplace-grid" id="marketplace-list">
+          <!-- Skill 1 -->
+          <div class="skill-card" data-cat="research">
+            <div class="skill-header">
+              <div class="skill-icon">🔎</div>
+              <div class="skill-title-block">
+                <h3>Research Pack</h3>
+                <span class="skill-version">v1.2.0 • Published by U-AIX Team</span>
+              </div>
+            </div>
+            <p class="skill-desc">Perform deep web crawls, rank relevant citation paths, extract core patterns, and synthesize structured knowledge reports.</p>
+            <div class="skill-features">
+              <span class="feature-tag">Web Scraper</span>
+              <span class="feature-tag">Citation Parser</span>
+              <span class="feature-tag">Context Synthesizer</span>
+            </div>
+            <div class="skill-footer">
+              <div class="skill-meta">License: <strong>Free Core</strong></div>
+              <button class="btn-install installed">Installed</button>
+            </div>
+          </div>
+
+          <!-- Skill 2 -->
+          <div class="skill-card" data-cat="creative">
+            <div class="skill-header">
+              <div class="skill-icon">🎨</div>
+              <div class="skill-title-block">
+                <h3>Creative Pack</h3>
+                <span class="skill-version">v2.1.4 • Published by Studio AI</span>
+              </div>
+            </div>
+            <p class="skill-desc">Generate marketing copywriting, construct multi-step visual layout prompts, compile graphic guidelines, and write video scripts.</p>
+            <div class="skill-features">
+              <span class="feature-tag">Image Generator</span>
+              <span class="feature-tag">Copywriter</span>
+              <span class="feature-tag">Style Injector</span>
+            </div>
+            <div class="skill-footer">
+              <div class="skill-meta">Cost: <strong>$0.02 / call</strong></div>
+              <button class="btn-install" data-id="creative-pack">Install</button>
+            </div>
+          </div>
+
+          <!-- Skill 3 -->
+          <div class="skill-card" data-cat="code">
+            <div class="skill-header">
+              <div class="skill-icon">💻</div>
+              <div class="skill-title-block">
+                <h3>Code Pack</h3>
+                <span class="skill-version">v3.0.0 • Published by EdgeDevs</span>
+              </div>
+            </div>
+            <p class="skill-desc">Generate clean files, debug stack traces, write comprehensive unit tests, and integrate custom microservice routes automatically.</p>
+            <div class="skill-features">
+              <span class="feature-tag">Linter</span>
+              <span class="feature-tag">Unit Test Generator</span>
+              <span class="feature-tag">Syntax Fixer</span>
+            </div>
+            <div class="skill-footer">
+              <div class="skill-meta">License: <strong>Open Source</strong></div>
+              <button class="btn-install" data-id="code-pack">Install</button>
+            </div>
+          </div>
+
+          <!-- Skill 4 -->
+          <div class="skill-card" data-cat="automation">
+            <div class="skill-header">
+              <div class="skill-icon">⚡</div>
+              <div class="skill-title-block">
+                <h3>Automation Pack</h3>
+                <span class="skill-version">v1.0.5 • Published by Automators</span>
+              </div>
+            </div>
+            <p class="skill-desc">Execute webhook endpoints, monitor dynamic API statuses, process incoming webhooks, and trigger alert escalations.</p>
+            <div class="skill-features">
+              <span class="feature-tag">Webhook Triggers</span>
+              <span class="feature-tag">Status Monitor</span>
+              <span class="feature-tag">Alert Node</span>
+            </div>
+            <div class="skill-footer">
+              <div class="skill-meta">Cost: <strong>$0.005 / node</strong></div>
+              <button class="btn-install" data-id="automation-pack">Install</button>
+            </div>
+          </div>
+
+          <!-- Skill 5 -->
+          <div class="skill-card" data-cat="business">
+            <div class="skill-header">
+              <div class="skill-icon">📊</div>
+              <div class="skill-title-block">
+                <h3>Business Pack</h3>
+                <span class="skill-version">v1.8.0 • Business Intelligence</span>
+              </div>
+            </div>
+            <p class="skill-desc">Analyze financial charts, validate SaaS business opportunities, calculate market size parameters, and build competitor mapping metrics.</p>
+            <div class="skill-features">
+              <span class="feature-tag">Finance Analyst</span>
+              <span class="feature-tag">TAM Estimator</span>
+              <span class="feature-tag">Growth Planner</span>
+            </div>
+            <div class="skill-footer">
+              <div class="skill-meta">License: <strong>Enterprise Only</strong></div>
+              <button class="btn-install" data-id="business-pack">Install</button>
+            </div>
+          </div>
+
+          <!-- Skill 6 -->
+          <div class="skill-card" data-cat="research">
+            <div class="skill-header">
+              <div class="skill-icon">🌐</div>
+              <div class="skill-title-block">
+                <h3>Deep Search Pack</h3>
+                <span class="skill-version">v1.1.2 • Published by U-AIX Team</span>
+              </div>
+            </div>
+            <p class="skill-desc">Conduct web scans, query multiple search engines simultaneously, bypass content firewalls, and extract semantic structured tags.</p>
+            <div class="skill-features">
+              <span class="feature-tag">Multi-Engine Search</span>
+              <span class="feature-tag">Pattern Extractor</span>
+            </div>
+            <div class="skill-footer">
+              <div class="skill-meta">License: <strong>Free Core</strong></div>
+              <button class="btn-install" data-id="deep-search-pack">Install</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. MULTI-MODEL ROUTER -->
+      <div id="tab-router" class="content-view">
+        <div class="view-title-block">
+          <h1>Intelligence Router & Optimizer</h1>
+          <p>Dynamically scale model nodes according to context complexity, cost budget, and accuracy targets.</p>
+        </div>
+
+        <div class="router-container">
+          <div class="router-controls-card">
+            <h3>Orchestration Priorities</h3>
+            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 24px;">Adjust weights to customize how U-AIX automatically selects models for queries.</p>
+            
+            <div class="slider-group">
+              <div class="slider-header">
+                <span>Accuracy Focus (Quality / Depth)</span>
+                <span id="slider-accuracy-val">70%</span>
+              </div>
+              <input type="range" class="custom-range-slider" id="slider-accuracy" min="0" max="100" value="70">
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-header">
+                <span>Latency Focus (Execution Speed)</span>
+                <span id="slider-speed-val">40%</span>
+              </div>
+              <input type="range" class="custom-range-slider" id="slider-speed" min="0" max="100" value="40">
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-header">
+                <span>Cost Focus (Token Budget)</span>
+                <span id="slider-cost-val">30%</span>
+              </div>
+              <input type="range" class="custom-range-slider" id="slider-cost" min="0" max="100" value="30">
+            </div>
+
+            <h3 style="margin-top: 32px; border-top: 1px solid var(--border-color); padding-top: 24px;">Selected Model Route Recommendations</h3>
+            
+            <div class="model-comparison-grid" id="router-recommendation-list">
+              <!-- Cards will update dynamically based on settings -->
+            </div>
+          </div>
+
+          <!-- Router telemetries -->
+          <div class="router-sidebar">
+            <div class="intelligence-stats">
+              <h3>Orchestrator Dial Indicators</h3>
+              <div class="gauge-container">
+                <div class="gauge-item">
+                  <div class="gauge-ring">
+                    <svg><circle class="gauge-circle-bg" cx="40" cy="40" r="32"/><circle class="gauge-circle-val ring-accuracy" cx="40" cy="40" r="32" stroke-dasharray="201" stroke-dashoffset="60"/></svg>
+                    <span class="gauge-value" id="gauge-accuracy-text">85%</span>
+                  </div>
+                  <span class="gauge-label">Quality Score</span>
+                </div>
+
+                <div class="gauge-item">
+                  <div class="gauge-ring">
+                    <svg><circle class="gauge-circle-bg" cx="40" cy="40" r="32"/><circle class="gauge-circle-val ring-speed" cx="40" cy="40" r="32" stroke-dasharray="201" stroke-dashoffset="100"/></svg>
+                    <span class="gauge-value" id="gauge-speed-text">180ms</span>
+                  </div>
+                  <span class="gauge-label">Latency</span>
+                </div>
+
+                <div class="gauge-item">
+                  <div class="gauge-ring">
+                    <svg><circle class="gauge-circle-bg" cx="40" cy="40" r="32"/><circle class="gauge-circle-val ring-cost" cx="40" cy="40" r="32" stroke-dasharray="201" stroke-dashoffset="140"/></svg>
+                    <span class="gauge-value" id="gauge-cost-text">$0.015</span>
+                  </div>
+                  <span class="gauge-label">Per/1k Tok</span>
+                </div>
+              </div>
+
+              <div style="background: var(--bg-darker); padding: 14px; border-radius: var(--radius-md); font-size: 0.8rem; margin-top: 20px;">
+                <h4 style="margin-bottom: 8px; color: var(--text-primary);">Routing Summary</h4>
+                <p id="routing-summary-paragraph" style="color: var(--text-secondary); line-height: 1.4;">Based on active parameters, the routing engine delegates complex reasoning blocks to Gemini 1.5 Pro, and executes basic summarizations locally on Mistral 7B to optimize cost and latency.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. UNIVERSAL MEMORY System -->
+      <div id="tab-memory" class="content-view">
+        <div class="view-title-block">
+          <h1>Universal Memory System</h1>
+          <p>Sync workspaces, prompt histories, and semantic context indexes cross-platform.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 340px; gap: 24px;">
+          <!-- Node graph of active memory -->
+          <div class="memory-graph-workspace" id="memory-graph-canvas">
+            <svg style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none;" id="memory-lines-svg">
+              <!-- JS will connect nodes -->
+            </svg>
+            
+            <div class="memory-node memory-center-node" style="left: calc(50% - 70px); top: calc(50% - 25px);" id="mem-core">
+              U-AIX Memory Hub
+            </div>
+            
+            <div class="memory-node" style="left: 10%; top: 20%;" id="mem-openai">
+              ChatGPT Context
+            </div>
+            
+            <div class="memory-node" style="left: 80%; top: 15%;" id="mem-claude">
+              Claude Context
+            </div>
+            
+            <div class="memory-node" style="left: 15%; top: 75%;" id="mem-gemini">
+              Gemini Context
+            </div>
+
+            <div class="memory-node" style="left: 75%; top: 70%;" id="mem-local">
+              Local LLM Vector
+            </div>
+          </div>
+
+          <!-- Memory actions -->
+          <div class="studio-panel-card">
+            <h3>Context Sync Actions</h3>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 16px;">Synchronize embeddings and workspace graphs safely.</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <button class="btn-primary" id="btn-sync-mem-now" style="width: 100%; justify-content: center;">
+                Sync Memory Cross-Platform
+              </button>
+              <button class="btn-outline" style="width: 100%; justify-content: center;">
+                Download Context Export
+              </button>
+              <button class="btn-outline" style="width: 100%; justify-content: center; color: var(--accent-danger); border-color: rgba(220, 80, 100, 0.3);">
+                Purge All Vector Nodes
+              </button>
+            </div>
+
+            <h4 style="margin-top: 24px; margin-bottom: 8px; font-size: 0.85rem; color: var(--text-primary);">Vector Index Info</h4>
+            <div style="background: var(--bg-darker); padding: 12px; border-radius: var(--radius-sm); font-size: 0.75rem; font-family: var(--font-mono); color: var(--text-secondary);">
+              <div>Vectors Cached: <strong>12,481</strong></div>
+              <div>Dimension Size: <strong>1536 (Ada)</strong></div>
+              <div>Index Distance: <strong>Cosine</strong></div>
+              <div>Sync Protocol: <strong>TLS 1.3 / Aes-256</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. ARCHITECT PORTAL -->
+      <div id="tab-architect" class="content-view">
+        <div class="view-title-block">
+          <h1>Architect Portal</h1>
+          <p>System diagrams, database models, API specs, and the SDK programming sandbox.</p>
+        </div>
+
+        <div class="architect-tabs">
+          <button class="arch-tab active" data-subtab="arch-blueprint">System Blueprint</button>
+          <button class="arch-tab" data-subtab="arch-database">Database Schema</button>
+          <button class="arch-tab" data-subtab="arch-api">API Sandbox</button>
+          <button class="arch-tab" data-subtab="arch-sdk">Agent SDK Playground</button>
+        </div>
+
+        <!-- 6.1 System Blueprint -->
+        <div id="arch-blueprint" class="arch-view-content active">
+          <div class="blueprint-layers">
+            <!-- Layer 1 -->
+            <div class="blueprint-layer">
+              <div class="layer-badge badge-layer1">Experience Layer</div>
+              <div class="layer-description">
+                <h3>Layer 1 — Cross-Platform Client Interfaces</h3>
+                <p>Ensures persistent connections and voice/AR synchronization through responsive channels.</p>
+              </div>
+              <div class="layer-components">
+                <span class="layer-comp-pill">Next.js WebApp</span>
+                <span class="layer-comp-pill">Edge Extension</span>
+                <span class="layer-comp-pill">Tauri Desktop Client</span>
+                <span class="layer-comp-pill">WASM Voice SDK</span>
+              </div>
+            </div>
+            
+            <!-- Layer 2 -->
+            <div class="blueprint-layer">
+              <div class="layer-badge badge-layer2">Agent Layer</div>
+              <div class="layer-description">
+                <h3>Layer 2 — Autonomous Executive Units</h3>
+                <p>Directs specialized packages that manage analysis, coding logic, and structured task plans.</p>
+              </div>
+              <div class="layer-components">
+                <span class="layer-comp-pill">Research Agent</span>
+                <span class="layer-comp-pill">Code Engineer</span>
+                <span class="layer-comp-pill">Creative Copywriter</span>
+                <span class="layer-comp-pill">Automation Runner</span>
+              </div>
+            </div>
+
+            <!-- Layer 3 -->
+            <div class="blueprint-layer">
+              <div class="layer-badge badge-layer3">Orchestration Layer</div>
+              <div class="layer-description">
+                <h3>Layer 3 — Multi-Agent Coordination Pipeline</h3>
+                <p>Coordinates context replication, token optimization rules, and parallel process execution cycles.</p>
+              </div>
+              <div class="layer-components">
+                <span class="layer-comp-pill">Step Orchestrator</span>
+                <span class="layer-comp-pill">Context Handover Router</span>
+                <span class="layer-comp-pill">Memory Broker</span>
+              </div>
+            </div>
+
+            <!-- Layer 4 -->
+            <div class="blueprint-layer">
+              <div class="layer-badge badge-layer4">Intelligence Layer</div>
+              <div class="layer-description">
+                <h3>Layer 4 — Dynamic Prompt & Route Optimizer</h3>
+                <p>Inspects text targets, estimates cost budgets, and selects commercial vs. local models dynamically.</p>
+              </div>
+              <div class="layer-components">
+                <span class="layer-comp-pill">Quality Estimator</span>
+                <span class="layer-comp-pill">Failover Controller</span>
+                <span class="layer-comp-pill">Prompt Optimizer</span>
+              </div>
+            </div>
+
+            <!-- Layer 5 -->
+            <div class="blueprint-layer">
+              <div class="layer-badge badge-layer5">Infrastructure Layer</div>
+              <div class="layer-description">
+                <h3>Layer 5 — Scalable Local & Distributed Runtime</h3>
+                <p>Coordinates cloud serverless setups, local Edge LLM connectors, and zero-knowledge clusters.</p>
+              </div>
+              <div class="layer-components">
+                <span class="layer-comp-pill">Local Edge Inference</span>
+                <span class="layer-comp-pill">Zero-Knowledge Vault</span>
+                <span class="layer-comp-pill">Distributed Orchestrator</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6.2 Database Schema -->
+        <div id="arch-database" class="arch-view-content">
+          <div class="db-schema-layout">
+            <!-- Table 1 -->
+            <div class="schema-table-card">
+              <div class="table-header">
+                <span>Users Table</span>
+                <span class="table-type">Relational Metadata</span>
+              </div>
+              <div class="schema-row"><span class="col-name">id</span><span class="col-key">UUID (PK)</span></div>
+              <div class="schema-row"><span class="col-name">email</span><span class="col-type">VARCHAR</span></div>
+              <div class="schema-row"><span class="col-name">password_hash</span><span class="col-type">VARCHAR</span></div>
+              <div class="schema-row"><span class="col-name">workspace_settings</span><span class="col-type">JSONB</span></div>
+              <div class="schema-row"><span class="col-name">created_at</span><span class="col-type">TIMESTAMP</span></div>
+            </div>
+
+            <!-- Table 2 -->
+            <div class="schema-table-card">
+              <div class="table-header">
+                <span>Workflows Table</span>
+                <span class="table-type">Document Template</span>
+              </div>
+              <div class="schema-row"><span class="col-name">id</span><span class="col-key">UUID (PK)</span></div>
+              <div class="schema-row"><span class="col-name">user_id</span><span class="col-type">UUID (FK)</span></div>
+              <div class="schema-row"><span class="col-name">name</span><span class="col-type">VARCHAR</span></div>
+              <div class="schema-row"><span class="col-name">node_graph_definition</span><span class="col-type">JSON</span></div>
+              <div class="schema-row"><span class="col-name">active_router_weights</span><span class="col-type">JSONB</span></div>
+            </div>
+
+            <!-- Table 3 -->
+            <div class="schema-table-card">
+              <div class="table-header">
+                <span>MemoryVectors</span>
+                <span class="table-type">Vector DB Collection</span>
+              </div>
+              <div class="schema-row"><span class="col-name">vector_id</span><span class="col-key">VARCHAR (PK)</span></div>
+              <div class="schema-row"><span class="col-name">session_id</span><span class="col-type">UUID</span></div>
+              <div class="schema-row"><span class="col-name">embedding</span><span class="col-type">VECTOR(1536)</span></div>
+              <div class="schema-row"><span class="col-name">payload_text</span><span class="col-type">TEXT</span></div>
+              <div class="schema-row"><span class="col-name">origin_model_source</span><span class="col-type">VARCHAR</span></div>
+            </div>
+
+            <!-- Table 4 -->
+            <div class="schema-table-card">
+              <div class="table-header">
+                <span>InstalledSkills</span>
+                <span class="table-type">Relational Mapping</span>
+              </div>
+              <div class="schema-row"><span class="col-name">user_id</span><span class="col-key">UUID (PK, FK)</span></div>
+              <div class="schema-row"><span class="col-name">skill_id</span><span class="col-key">VARCHAR (PK)</span></div>
+              <div class="schema-row"><span class="col-name">config_params</span><span class="col-type">JSONB</span></div>
+              <div class="schema-row"><span class="col-name">installed_at</span><span class="col-type">TIMESTAMP</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6.3 API Sandbox -->
+        <div id="arch-api" class="arch-view-content">
+          <div class="api-specs-view">
+            <!-- Sidebar list -->
+            <div class="api-endpoint-list">
+              <div class="endpoint-item active" data-ep="create-session">
+                <span class="api-method method-post">POST</span>
+                <span class="api-path">/sessions</span>
+              </div>
+              <div class="endpoint-item" data-ep="execute-step">
+                <span class="api-method method-post">POST</span>
+                <span class="api-path">/orchestrate/run</span>
+              </div>
+              <div class="endpoint-item" data-ep="sync-context">
+                <span class="api-method method-put">PUT</span>
+                <span class="api-path">/memory/sync</span>
+              </div>
+              <div class="endpoint-item" data-ep="list-skills">
+                <span class="api-method method-get">GET</span>
+                <span class="api-path">/skills</span>
+              </div>
+            </div>
+
+            <!-- Sandbox details panel -->
+            <div class="api-details-card" id="api-sandbox-details">
+              <!-- Loaded dynamically by app.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- 6.4 SDK Playground -->
+        <div id="arch-sdk" class="arch-view-content">
+          <div class="sdk-playground-grid">
+            <div class="sdk-language-sidebar">
+              <button class="sdk-lang-btn active" data-lang="javascript">JavaScript / Node.js</button>
+              <button class="sdk-lang-btn" data-lang="python">Python Framework</button>
+            </div>
+            
+            <div class="sdk-code-display">
+              <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
+                <h3 id="sdk-code-title">JavaScript / Node.js SDK</h3>
+                <span class="feature-tag" style="background-color: var(--bg-darker);" id="sdk-code-lang-badge">javascript</span>
+              </div>
+              <pre class="code-pre-box" style="white-space: pre; overflow-x: auto; color: var(--text-primary);" id="sdk-code-box">
+                <!-- Highlighted code will load here -->
+              </pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. PITCH & BUSINESS DECK -->
+      <div id="tab-business" class="content-view">
+        <div class="view-title-block">
+          <h1>U-AIX Pitch & Business Strategy</h1>
+          <p>Product monetization model, scaling roadmaps, launch strategies, and investor presentation slides.</p>
+        </div>
+
+        <!-- Carousel -->
+        <div class="carousel-deck">
+          <div class="slide-content-wrapper" id="deck-slide-container">
+            <!-- Slide 1 -->
+            <div class="carousel-slide active" data-slide="1">
+              <span class="slide-category">Slide 1 — The Opportunity</span>
+              <h2 class="slide-title">Unifying a Fragmented AI Landscape</h2>
+              <div class="slide-body">
+                <p>The AI space is exploding, yet developers and enterprises face crippling vendor lock-in, fragmented prompt histories, incompatible agent formats, and complex routing equations.</p>
+                <ul>
+                  <li><strong>The Solution:</strong> U-AIX coordinates all commercial, local, and private LLMs into a singular operating structure.</li>
+                  <li><strong>The Edge:</strong> Users build reusable skills once, running them dynamically on the cheapest, fastest, or most accurate model available.</li>
+                  <li><strong>Market Size:</strong> Target TAM of $150B global AI orchestration and cognitive computing layer by 2028.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-slide" data-slide="2">
+              <span class="slide-category">Slide 2 — Marketplace Economy</span>
+              <h2 class="slide-title">Scalable Monetization Mechanics</h2>
+              <div class="slide-body">
+                <p>U-AIX connects creators, researchers, and enterprise users into a single platform marketplace built around value creation and usage incentives.</p>
+                <ul>
+                  <li><strong>Creator Subscriptions:</strong> Developers publish premium skills (e.g. Deep Search, TAM Calculator) and retain 80% of execution revenues.</li>
+                  <li><strong>API Routing Markups:</strong> Micro-transactions on orchestrations using commercial LLMs (e.g. ChatGPT, Claude) routed through our security tunnels.</li>
+                  <li><strong>Enterprise Licensing:</strong> Node licenses for self-hosted instances connected to corporate knowledge graphs ($12k - $80k annual contracts).</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-slide" data-slide="3">
+              <span class="slide-category">Slide 3 — MVP Product Roadmap</span>
+              <h2 class="slide-title">30/60/90 Days Engineering Timeline</h2>
+              <div class="slide-body">
+                <p>A rigorous phase schedule focused on developer onboarding and key pipeline mechanics.</p>
+                <ul>
+                  <li><strong>Day 30 (Foundation):</strong> Core SDK finalization, local CLI daemon release, and basic routing pipeline setup (ChatGPT & Claude).</li>
+                  <li><strong>Day 60 (Marketplace Beta):</strong> Skill registry launch, web visual console workspace, and vector context memory sync.</li>
+                  <li><strong>Day 90 (Production Scale):</strong> Edge runtime packaging (Tauri client), payment gateways integration, and enterprise secure tunnels deployment.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="carousel-slide" data-slide="4">
+              <span class="slide-category">Slide 4 — Scaling Infrastructure</span>
+              <h2 class="slide-title">High-Availability Topology</h2>
+              <div class="slide-body">
+                <p>Ensuring microsecond orchestrations and data sovereignty across globally distributed pipelines.</p>
+                <ul>
+                  <li><strong>Kubernetes Routing Pods:</strong> Autoscaling gateways that manage context packaging close to model server regions.</li>
+                  <li><strong>Decentralized Local Inference:</strong> Offloading basic tasks (validation, summarization) to edge nodes running local models via WASM.</li>
+                  <li><strong>Zero-Trust Encrypted Storage:</strong> Hybrid databases (SQL metadata + Pinecone vector layers) with client-key encryption parameters.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="carousel-slide" data-slide="5">
+              <span class="slide-category">Slide 5 — Deployment Strategy</span>
+              <h2 class="slide-title">Multi-Region Cloud and Edge Hybrid</h2>
+              <div class="slide-body">
+                <p>Deployment topology structured for maximum stability, uptime, and compliance.</p>
+                <ul>
+                  <li><strong>Cloud Infrastructure:</strong> Core orchestrator deployed across AWS & GCP regions with sub-5ms routing networks.</li>
+                  <li><strong>CI/CD Pipelines:</strong> Automated testing triggers that analyze skill compliance and check prompt regression indicators.</li>
+                  <li><strong>Data Sovereignty:</strong> EU and US isolation zones to automatically guarantee compliance with GDPR, CCPA, and SOC2 directives.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Slide 6 -->
+            <div class="carousel-slide" data-slide="6">
+              <span class="slide-category">Slide 6 — Launch & GTM Strategy</span>
+              <h2 class="slide-title">Acquiring Developer Mindshare</h2>
+              <div class="slide-body">
+                <p>Developer-first Go-To-Market execution designed to construct compounding viral acquisition loops.</p>
+                <ul>
+                  <li><strong>Open Source SDK Core:</strong> Offering the routing engine free on GitHub to spark community adapters.</li>
+                  <li><strong>Global Hackathons:</strong> Dedicated builder prizes for creators developing standout Skills in the automation, code, or research categories.</li>
+                  <li><strong>Developer Content Engines:</strong> Step-by-step guides showing how to construct complex Multi-Agent operations in under 5 minutes.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Slide 7 -->
+            <div class="carousel-slide" data-slide="7">
+              <span class="slide-category">Slide 7 — Competitive Advantage</span>
+              <h2 class="slide-title">U-AIX Competitive Landscape Matrix</h2>
+              <div class="slide-body">
+                <p>How U-AIX scales beyond isolated single-vendor frameworks and local SDK libraries.</p>
+                <div class="matrix-container">
+                  <table class="matrix-table">
+                    <thead>
+                      <tr>
+                        <th>Capability</th>
+                        <th>OpenAI GPTs</th>
+                        <th>LangChain</th>
+                        <th>U-AIX Ecosystem</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Cross-Platform Sync</td>
+                        <td class="matrix-cross">✗</td>
+                        <td class="matrix-check">✓</td>
+                        <td class="matrix-check" style="font-weight: 800; color: var(--accent-secondary);">✓ (Decentralized)</td>
+                      </tr>
+                      <tr>
+                        <td>No-Code Visual Studio</td>
+                        <td class="matrix-check">✓</td>
+                        <td class="matrix-cross">✗</td>
+                        <td class="matrix-check" style="font-weight: 800; color: var(--accent-secondary);">✓ (Drag & Drop)</td>
+                      </tr>
+                      <tr>
+                        <td>Dynamic Model Routing</td>
+                        <td class="matrix-cross">✗</td>
+                        <td class="matrix-cross">✗</td>
+                        <td class="matrix-check" style="font-weight: 800; color: var(--accent-secondary);">✓ (Cost/Speed Optimization)</td>
+                      </tr>
+                      <tr>
+                        <td>Creator Skill Economy</td>
+                        <td class="matrix-check">✓ (Limited)</td>
+                        <td class="matrix-cross">✗</td>
+                        <td class="matrix-check" style="font-weight: 800; color: var(--accent-secondary);">✓ (80% Creator Share)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide footer indicators -->
+          <div class="carousel-controls">
+            <button class="btn-outline" id="btn-prev-slide" style="padding: 6px 16px;">Previous</button>
+            <div class="carousel-dots" id="carousel-dots-wrapper">
+              <!-- Dots load here -->
+            </div>
+            <button class="btn-outline" id="btn-next-slide" style="padding: 6px 16px;">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. SECURITY & ZERO TRUST -->
+      <div id="tab-security" class="content-view">
+        <div class="view-title-block">
+          <h1>Security & Zero-Trust Monitor</h1>
+          <p>Verify encryption protocols, key rotation logs, and access control policies in real-time.</p>
+        </div>
+
+        <div class="security-grid">
+          <!-- Compliance details -->
+          <div class="security-card">
+            <h3>Zero-Trust Framework Compliance</h3>
+            <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 10px;">
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+                <span>Workspace Vector Encryption</span>
+                <span class="feature-tag" style="background: rgba(50, 200, 120, 0.15); border-color: rgba(50, 200, 120, 0.3); color: var(--accent-success);">AES-GCM-256</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+                <span>API Decoupled Transport</span>
+                <span class="feature-tag" style="background: rgba(50, 200, 120, 0.15); border-color: rgba(50, 200, 120, 0.3); color: var(--accent-success);">TLS 1.3 TUNNEL</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+                <span>Credential Vault Status</span>
+                <span class="feature-tag" style="background: rgba(50, 200, 120, 0.15); border-color: rgba(50, 200, 120, 0.3); color: var(--accent-success);">ROTATED (12h ago)</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+                <span>Audit Logs Verifiability</span>
+                <span class="feature-tag" style="background: rgba(0, 180, 216, 0.15); border-color: rgba(0, 180, 216, 0.3); color: var(--accent-secondary);">SHA-256 SIGNED</span>
+              </div>
+            </div>
+
+            <h4 style="margin-top: 24px; margin-bottom: 10px;">Active Encryption Protocols</h4>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4;">U-AIX enforces zero-knowledge policies. Encryption keys are generated client-side from the user's master password, meaning that the central orchestration engine coordinates API pipelines without ever storing decrypted database payloads.</p>
+          </div>
+
+          <!-- Real-time security events logs -->
+          <div class="security-card">
+            <h3>Security Event Feed</h3>
+            <div class="security-log-box" id="security-log-feed">
+              <span class="console-line info">[19:58:12] Daemon handshake established.</span>
+              <span class="console-line info">[19:58:13] Key Exchange complete: AES-256-GCM context channel verified.</span>
+              <span class="console-line info">[19:59:01] Token rotation initiated for OpenRouter endpoints.</span>
+              <span class="console-line success">[19:59:02] Token rotation success. Signed checksum verified.</span>
+              <span class="console-line info">[20:00:45] Workspace memory sync request received.</span>
+              <span class="console-line success">[20:00:46] Memory sync completed (42 vectors synced, 0 leaks, 0 errors).</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="sdk-samples.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
